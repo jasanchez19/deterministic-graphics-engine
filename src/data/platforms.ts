@@ -1,0 +1,88 @@
+import type { PlatformSpec } from "../engine/types";
+
+export const platforms: PlatformSpec[] = [
+  {
+    id: "youtube-thumbnail",
+    name: "YouTube Thumbnail",
+    category: "creator",
+    width: 1280,
+    height: 720,
+    safe: { top: 36, right: 64, bottom: 74, left: 64 },
+    recommendedFormats: ["png", "jpg"],
+    notes: ["Readable at 10% scale", "Avoid key text in bottom-right timestamp zone"],
+  },
+  {
+    id: "tiktok-cover",
+    name: "TikTok / Reels Cover",
+    category: "creator",
+    width: 1080,
+    height: 1920,
+    safe: { top: 220, right: 90, bottom: 320, left: 90 },
+    recommendedFormats: ["png", "jpg", "mp4"],
+    notes: ["Keep face/product in center third", "Avoid UI overlays near bottom and right edge"],
+  },
+  {
+    id: "instagram-post",
+    name: "Instagram Feed 4:5",
+    category: "social",
+    width: 1080,
+    height: 1350,
+    safe: { top: 70, right: 70, bottom: 90, left: 70 },
+    recommendedFormats: ["png", "jpg"],
+    notes: ["Primary message should survive square profile grid crop"],
+  },
+  {
+    id: "instagram-story",
+    name: "Story / Vertical Ad",
+    category: "social",
+    width: 1080,
+    height: 1920,
+    safe: { top: 250, right: 80, bottom: 280, left: 80 },
+    recommendedFormats: ["png", "jpg", "mp4"],
+    notes: ["Top and bottom UI zones must remain clean"],
+  },
+  {
+    id: "shopify-hero",
+    name: "Shopify Hero Banner",
+    category: "commerce",
+    width: 1920,
+    height: 900,
+    safe: { top: 90, right: 120, bottom: 90, left: 120 },
+    recommendedFormats: ["jpg", "png"],
+    notes: ["Subject should preserve crop at 1440, 1024, and mobile breakpoints"],
+  },
+  {
+    id: "shopify-product-card",
+    name: "Shopify Product Promo Card",
+    category: "commerce",
+    width: 1200,
+    height: 1200,
+    safe: { top: 72, right: 72, bottom: 72, left: 72 },
+    recommendedFormats: ["png", "jpg"],
+    notes: ["Works in square grids and paid social placements"],
+  },
+  {
+    id: "facebook-post",
+    name: "Facebook / Marketplace Post",
+    category: "social",
+    width: 1200,
+    height: 630,
+    safe: { top: 50, right: 70, bottom: 50, left: 70 },
+    recommendedFormats: ["jpg", "png"],
+    notes: ["Optimized for link-preview style surfaces"],
+  },
+  {
+    id: "print-flyer",
+    name: "Print Flyer Letter",
+    category: "print",
+    width: 2550,
+    height: 3300,
+    safe: { top: 180, right: 180, bottom: 180, left: 180 },
+    recommendedFormats: ["pdf", "png"],
+    notes: ["300 DPI letter-size raster equivalent"],
+  },
+];
+
+export function getPlatform(id: string): PlatformSpec {
+  return platforms.find((platform) => platform.id === id) ?? platforms[0];
+}

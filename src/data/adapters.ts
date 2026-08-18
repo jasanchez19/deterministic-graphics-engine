@@ -1,0 +1,58 @@
+import type { AdapterDefinition } from "../engine/types";
+
+export const adapters: AdapterDefinition[] = [
+  {
+    id: "local-export",
+    name: "Local Export",
+    status: "ready",
+    purpose: "Generate production PNG, JPG, PDF, SVG, JSON handoff, and contact sheets.",
+    capabilities: ["PNG/JPG export", "PDF export", "SVG source", "Contact sheet", "Project JSON"],
+    requiredConfig: [],
+    mvpRole: "Primary output adapter for finished non-generative graphics.",
+  },
+  {
+    id: "canva",
+    name: "Canva",
+    status: "configured",
+    purpose: "Use Canva as asset library and destination/handoff surface without Magic Design.",
+    capabilities: ["Asset upload", "Design discovery", "Export discovery", "Folder organization", "Manual/editor handoff"],
+    requiredConfig: ["Canva OAuth via existing mcporter bridge", "No Magic Design dependency"],
+    mvpRole: "Required source/destination adapter; the deterministic render engine remains local.",
+  },
+  {
+    id: "figma",
+    name: "Figma",
+    status: "needs_credentials",
+    purpose: "High-control editable design workspace through plugin/API handoff.",
+    capabilities: ["Figma-compatible JSON", "SVG import", "Plugin architecture target", "Design-system library target"],
+    requiredConfig: ["Figma access token or plugin dev setup"],
+    mvpRole: "Required editable design handoff adapter; live push needs credentials.",
+  },
+  {
+    id: "shopify",
+    name: "Shopify",
+    status: "needs_credentials",
+    purpose: "Map product data and export storefront-ready assets.",
+    capabilities: ["Product CSV ingestion", "Alt text metadata", "Hero/product image output", "Theme image bundle"],
+    requiredConfig: ["Shopify store URL", "Admin API token if live product pull/push is needed"],
+    mvpRole: "Commerce data/spec adapter; publishing requires explicit approval.",
+  },
+  {
+    id: "social-specs",
+    name: "Social Platform Specs",
+    status: "ready",
+    purpose: "Codify channel dimensions, safe zones, and export constraints.",
+    capabilities: ["YouTube", "TikTok", "Instagram", "Facebook", "Vertical ads", "Print"],
+    requiredConfig: [],
+    mvpRole: "Production constraints adapter for every design run.",
+  },
+  {
+    id: "asset-rights",
+    name: "Asset Rights Ledger",
+    status: "ready",
+    purpose: "Track whether assets are owned, licensed, supplier-provided, public reference, or unknown.",
+    capabilities: ["Source metadata", "Rights flagging", "Usage warnings", "Handoff notes"],
+    requiredConfig: [],
+    mvpRole: "Prevents accidental use of unlicensed media in production graphics.",
+  },
+];
